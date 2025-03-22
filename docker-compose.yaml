@@ -1,0 +1,21 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Nginx.Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/app
+  fpm:
+    build:
+      context: .
+      dockerfile: ./docker/php/Fpm.Dockerfile
+    volumes:
+      - ./:/var/www/app
+    networks:
+      - internal
+networks:
+  internal:
