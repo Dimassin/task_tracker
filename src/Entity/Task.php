@@ -29,6 +29,10 @@ class Task
     #[ORM\Column]
     private ?int $status = null;
 
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
+    private Category|null $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +94,18 @@ class Task
     public function setStatus(int $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

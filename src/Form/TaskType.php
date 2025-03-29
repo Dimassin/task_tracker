@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Task;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +21,12 @@ class TaskType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('status')
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'title',
+                'required' => false,
+                'empty_data' => null,
+            ])
         ;
     }
 
