@@ -31,6 +31,12 @@
                 <th>Status</th>
                 <td>{{ task.status }}</td>
             </tr>
+            {% if (task.category) %}
+            <tr>
+                <th>Category</th>
+                <td>{{ task.category.title }}</td>
+            </tr>
+            {% endif %}
         </tbody>
     </table>
 
